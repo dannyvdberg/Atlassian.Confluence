@@ -13,8 +13,8 @@ Ansible rols which installs and configures a basic Atlassian Confluence Installa
 #### Variables
 
 ```yaml
-confluence_versie: 5.8.10 										# Version of JIRA Installation
-confluence_user: confluence 									# Server user that runs and stops JIRA
+confluence_versie: 5.8.10 										# Version of Confluence Installation
+confluence_user: confluence 									# Server user that runs and stops Confluence
 confluence_installatie_directory: /opt/atlassian/confluence 	# Default Installation Directory
 confluence_data_directory: /opt/application-data/confluence 	# Default Data Directory
 
@@ -35,7 +35,7 @@ confluence_memory_settings_mx: 2048								# Edit value for a different memory s
 ---
  - hosts: webservers
    roles:
-   - dannyvdberg.Atlassian.JIRA
+   - dannyvdberg.Atlassian-Confluence
 ```
 
 
