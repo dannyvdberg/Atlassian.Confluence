@@ -1,0 +1,4 @@
+# handlers file for Atlassian.Confluence
+
+ - name: Start Confluence
+   service: name=confluence state=restarted

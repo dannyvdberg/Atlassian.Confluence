@@ -1,0 +1,13 @@
+# file: confluence/tasks/mysql.yml
+
+- name: Download Mysql Driver for database
+  get_url: url=http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.36.tar.gz dest=/tmp
+  when: mysql_connector == "yes"
+
+- name: Extract MySQL Driver for database
+  unarchive: src=/tmp/mysql-connector-java-5.1.36.tar.gz dest=/tmp copy=no group=confluence owner=confluence
+  when: mysql_connector == "yes"
+
+- name: Move MySQL Driver jar to the correct folder
+  command: mv /tmp/mysql-connector-java-5.1.36/mysql-connector-java-5.1.36-bin.jar {{confluence_installatie_directory}}/{{confluence_installatie_versie}}/lib
+  when: mysql_connector == "yes"

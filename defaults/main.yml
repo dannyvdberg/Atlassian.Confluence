@@ -1,0 +1,21 @@
+---
+# defaults file for Avisi.JIRA
+
+confluence_versie: 5.8.10
+confluence_user: confluence
+confluence_installatie_directory: /opt/atlassian/confluence
+confluence_data_directory: /opt/application-data/confluence
+
+confluence_backdoor_connector: "yes"
+confluence_proxy_name: "myconfluence.com"
+confluence_proxy_port: "443"
+confluence_proxy_scheme: "https"
+confluence_path: "/mycompany"
+mysql_connector: "yes"
+
+confluence_memory_settings_mn: "1024"
+confluence_memory_settings_mx: "2048"
+
+confluence_url: http://www.atlassian.com/software/confluence/downloads/binary/{{confluence_tar}}
+confluence_tar: atlassian-confluence-{{confluence_versie}}.tar.gz
+confluence_installatie_versie: atlassian-confluence-{{confluence_versie}}

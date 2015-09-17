@@ -1,0 +1,11 @@
+---
+# tasks file for Avisi.JIRA
+
+ - include: confluence.yml
+   tags: [confluence, confluence-installatie]
+
+ - include: proxy.yml
+   tags: [confluence, confluence-configuratie]
+
+ - include: mysql.yml
+   tags: [confluence, mysql-installatie]

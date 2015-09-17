@@ -1,0 +1,42 @@
+ # file: confluence/tasks/confluence.yml
+
+- name: Add Confluence applicatie user
+  user: name={{confluence_user}} shell=/bin/bash groups=sudo append=yes
+
+- name: Create confluence installation directory
+  file: path={{confluence_installatie_directory}} state=directory owner=confluence group=confluence
+  
+- name: Create confluence data directory
+  file: path={{confluence_data_directory}} state=directory owner=confluence group=confluence recurse=yes
+
+- name: Download confluence
+  get_url: url={{confluence_url}} dest={{confluence_installatie_directory}}/{{confluence_tar}} 
+
+- name: Extract confluence
+  unarchive: src={{confluence_installatie_directory}}/{{confluence_tar}} dest={{confluence_installatie_directory}} copy=no group=confluence owner=confluence 
+
+- name: Set Confluence Home in confluence-init.properties
+  lineinfile: dest={{confluence_installatie_directory}}/{{confluence_installatie_versie}}/confluence/WEB-INF/classes/confluence-init.properties line="confluence.home = {{confluence_data_directory}}"
+  
+- name: Set Confluence Memory settings in setenv.sh
+  replace: dest={{confluence_installatie_directory}}/{{confluence_installatie_versie}}/bin/setenv.sh regexp='1024m' replace='{{confluence_memory_settings_mn}}m'
+  when: confluence_memory_settings_mn is defined
+
+- name: Set Confluence Memory settings in setenv.sh
+  replace: dest={{confluence_installatie_directory}}/{{confluence_installatie_versie}}/bin/setenv.sh regexp='1024m' replace='{{confluence_memory_settings_mx}}m'
+  when: confluence_memory_settings_mx is defined
+
+- name: Chown confluence installation dir
+  file: path={{confluence_installatie_directory}}/{{confluence_installatie_versie}} state=directory owner=confluence group=confluence recurse=yes
+
+- name: Chown confluence data dir
+  file: path={{confluence_data_directory}} state=directory owner=confluence group=confluence recurse=yes
+
+- name: Create symlink to confluence
+  file: path={{confluence_installatie_directory}}/current state=link src={{confluence_installatie_versie}} owner=confluence group=confluence mode=0755
+
+- name: Remove confluence installation tar 
+  command: rm {{confluence_installatie_directory}}/{{confluence_tar}}
+
+- name: Add startup script Confluence
+  template: src=confluence dest=/etc/init.d/confluence mode=0751

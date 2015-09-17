@@ -1,0 +1,13 @@
+# file: confluence/tasks/proxy.yml
+
+- name: set Confluence proxy settings
+  template: src=files/connector dest={{confluence_installatie_directory}}/{{confluence_installatie_versie}}/conf/server.xml group=confluence owner=confluence force=yes
+  when: confluence_proxy_name is defined and confluence_proxy_port is defined and confluence_proxy_scheme is defined
+
+- name: Set Confluence Backdoor Connector in server.xml
+  template: src=files/connector-backdoor dest={{confluence_installatie_directory}}/{{confluence_installatie_versie}}/conf/server.xml group=confluence owner=confluence force=yes
+  when: confluence_backdoor_connector is defined and confluence_backdoor_connector == "ja"
+
+- name: Set Confluence Path in server.xml
+  replace: src=files/connector dest={{confluence_installatie_directory}}/{{confluence_installatie_versie}}/conf/server.xml regexp='Context path=""' replace='Context path="/{{confluence_path}}"' group=confluence owner=confluence force=yes
+  when: confluence_path is defined
