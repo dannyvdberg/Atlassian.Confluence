@@ -1,4 +1,4 @@
-## Atlassian Confluence by Avisi
+## Atlassian Confluence by 
 
 Ansible rols which installs and configures a basic Atlassian Confluence Installation
 
@@ -41,7 +41,6 @@ confluence_memory_settings_mx: 2048								# Edit value for a different memory s
 
 ###Author Information
 - Author:		Danny van den Berg
-- Company:		Avisi
 
 
 ###Feedback, bug-reports, requests, ....
