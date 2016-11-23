@@ -9,8 +9,6 @@ APP=confluence
 USER=confluence
 # Location of application's bin directory
 BASE={{confluence_installatie_directory}}/current
-# Location of Java JDK
-export JAVA_HOME=/usr/lib/jvm/current
 
 case "$1" in
   # Start command
