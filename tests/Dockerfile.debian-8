@@ -1,0 +1,12 @@
+FROM debian:jessie
+RUN apt-get update
+
+# Install Ansible
+RUN apt-get update
+RUN apt-get install -y python python-pip git
+RUN pip install ansible
+
+# Install Ansible inventory file
+RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
+
+RUN ansible-galaxy install williamyeh.oracle-java

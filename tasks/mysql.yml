@@ -1,13 +1,27 @@
-# file: confluence/tasks/mysql.yml
+---
 
-- name: Download Mysql Driver for database
-  get_url: url=http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.36.tar.gz dest=/tmp
-  when: mysql_connector == "yes"
+- name: Download and extract MYSQL connector
+  unarchive: src="{{ mysql_connector_url }}" dest=/tmp owner={{ confluence_user }} group={{ confluence_user }} copy=no
 
-- name: Extract MySQL Driver for database
-  unarchive: src=/tmp/mysql-connector-java-5.1.36.tar.gz dest=/tmp copy=no group=confluence owner=confluence
-  when: mysql_connector == "yes"
+- name: Copy the connector into jira libs directory
+  command: "cp /tmp/mysql-connector-java-{{ mysql_connector_version }}/mysql-connector-java-{{ mysql_connector_version }}-bin.jar {{ confluence_installatie_directory }}/{{ confluence_installatie_versie }}/lib"
 
-- name: Move MySQL Driver jar to the correct folder
-  command: mv /tmp/mysql-connector-java-5.1.36/mysql-connector-java-5.1.36-bin.jar {{confluence_installatie_directory}}/{{confluence_installatie_versie}}/lib
-  when: mysql_connector == "yes"
+- name: Create default database user for application
+  mysql_user: name={{ db_application_user }} 
+              password={{ db_application_password }} 
+              login_host={{ db_hostname }}
+              login_port={{ db_port }}
+              login_user={{ db_admin_user }} 
+              login_password={{ db_admin_password }} 
+              priv=*.*:ALL,GRANT 
+              state=present
+
+- name: Create default database
+  mysql_db: name={{ db_name }} 
+            login_host={{ db_hostname }}
+            login_port={{ db_port }}
+            login_user={{ db_admin_user }} 
+            login_password={{ db_admin_password }} 
+            encoding=utf8
+            collation=utf8_bin
+            state=present

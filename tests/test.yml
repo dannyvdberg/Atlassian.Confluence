@@ -1,0 +1,7 @@
+---
+
+- hosts: all
+  roles:
+    - role: williamyeh.oracle-java
+      java_set_javahome: true
+    - role: Atlassian.Confluence

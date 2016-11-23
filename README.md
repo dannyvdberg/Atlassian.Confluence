@@ -1,6 +1,12 @@
-## Atlassian Confluence by 
+## Atlassian Confluence by
+
+[![Build Status](https://travis-ci.org/arbouin-consulting/Atlassian.Confluence.svg?branch=master)](https://travis-ci.org/arbouin-consulting/Atlassian.Confluence)
 
 Ansible rols which installs and configures a basic Atlassian Confluence Installation
+
+### Suggest Ansible Role
+
+ - williamyeh.oracle-java (for install JAVA 1.8.*)
 
 
 #### Requirements & Dependencies
@@ -27,6 +33,18 @@ mysql_connector: "yes"											# Enter yes when you use MySQL as database
 
 confluence_memory_settings_mn: 1024 							# Edit value for a different memory settings		
 confluence_memory_settings_mx: 2048								# Edit value for a different memory settings
+
+system_config_database: false                                   # Prepare application and external database
+
+# configuration external database
+db_admin_user: root
+db_admin_password: overide_me
+db_application_user: confluence
+db_application_password: overide_me
+db_hostname: localhost
+db_port: 3306
+db_name: confluence
+db_type: mysql                                # choose between postgres and mysql
 ```
 
 

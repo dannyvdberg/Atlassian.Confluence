@@ -1,10 +1,14 @@
 ---
 # defaults file for Avisi.JIRA
 
+confluence_user: confluence
+confluence_group: "{{ confluence_user }}"
 confluence_versie: 5.8.10
 confluence_user: confluence
 confluence_installatie_directory: /opt/atlassian/confluence
 confluence_data_directory: /opt/application-data/confluence
+
+system_config_database: false
 
 confluence_backdoor_connector: "yes"
 confluence_proxy_name: "myconfluence.com"
@@ -12,6 +16,18 @@ confluence_proxy_port: "443"
 confluence_proxy_scheme: "https"
 confluence_path: "/mycompany"
 mysql_connector: "yes"
+mysql_connector_version: 5.1.38
+mysql_connector_archive: mysql-connector-java-{{ mysql_connector_version }}.tar.gz
+mysql_connector_url: https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_archive }}
+
+db_admin_user: root
+db_admin_password: overide_me
+db_application_user: confluence
+db_application_password: overide_me
+db_hostname: localhost
+db_port: 3306
+db_name: confluence
+db_type: postgres                                # choose between postgres and mysql
 
 confluence_memory_settings_mn: "1024"
 confluence_memory_settings_mx: "2048"

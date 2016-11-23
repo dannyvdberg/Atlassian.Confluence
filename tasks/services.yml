@@ -1,0 +1,4 @@
+---
+
+- name: Register Service
+  service: name=confluence enabled=yes state=started
