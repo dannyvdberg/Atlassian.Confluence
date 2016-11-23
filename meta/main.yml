@@ -2,16 +2,17 @@
 galaxy_info:
   author: Danny van den Berg
   description: Ansible rols which installs and configures a basic Atlassian Confluence Installation
-  company: Avisi 
+  company: Avisi
   license: license (GPLv2, CC-BY, etc)
   min_ansible_version: 1.9.3
   platforms:
   - name: Ubuntu
     versions:
     - trusty
-  categories:
-  - system
-  - development
-  dependencies: []
+  galaxy_tags:
+  - confluence
+  - atlassian
+
+dependencies: []
 
   
