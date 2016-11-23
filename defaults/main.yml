@@ -17,6 +17,8 @@ confluence_proxy_scheme: "https"
 confluence_path: "/mycompany"
 mysql_connector: "yes"
 mysql_connector_version: 5.1.38
+mysql_connector_archive: mysql-connector-java-{{ mysql_connector_version }}.tar.gz
+mysql_connector_url: https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_archive }}
 
 db_admin_user: root
 db_admin_password: overide_me
