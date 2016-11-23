@@ -1,7 +1,4 @@
 ---
 
-- name: Loading new service
-  command: "systemctl daemon-reload"
-
 - name: Register Service
   service: name=confluence enabled=yes state=started
