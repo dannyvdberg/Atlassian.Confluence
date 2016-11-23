@@ -1,4 +1,6 @@
-## Atlassian Confluence by 
+## Atlassian Confluence by
+
+[![Build Status](https://travis-ci.org/arbouin-consulting/Atlassian.Confluence.svg?branch=master)](https://travis-ci.org/arbouin-consulting/Atlassian.Confluence)
 
 Ansible rols which installs and configures a basic Atlassian Confluence Installation
 
